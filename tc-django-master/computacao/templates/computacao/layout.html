@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Teoría da Computação</title>
+
+    {% load static %}
+    <link rel="icon" type="image/png" href="{% static 'computacao/images/favicon.png' %}">
+
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.1/css/bootstrap.min.css">
+
+    <link rel="stylesheet" href="{% static 'computacao/style.css' %}">
+
+</head>
+<body>
+    <header class="jumbotron text-center">
+        <h1>Teoría da Computação</h1>
+        <nav>
+            <a href="{% url 'computacao:index' %}" class="btn btn-info" role="button">Introdução</a>
+            <a href="{% url 'computacao:automatos' %}" class="btn btn-info" role="button">Autómatos</a>
+            <a href="{% url 'computacao:maquinas' %}" class="btn btn-info" role="button">Máquinas de Turing</a>
+            <a href="{% url 'computacao:expressoes' %}" class="btn btn-info" role="button">Expressões Regulares</a>            
+        </nav>
+    </header>
+    <div  class="text-center">
+         {% block main %}
+        {% endblock %}
+    </div>
+
+</body>
+</html>

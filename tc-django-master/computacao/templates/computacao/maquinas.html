@@ -1,0 +1,55 @@
+{% extends 'computacao/layout.html' %}
+
+{% block main %}
+
+    <main class="col-sm-12 text-center">
+
+        <h3>Máquinas de Turing</h3>
+        <a href="{% url 'computacao:novamaquina' %}" class="btn btn-success btn-sm btn-block">
+        Crie uma Máquina Turing
+        </a>
+        <br>
+        <p>Apresentam-se em baixo as maquinás turing que foram criadas.</p>
+
+        <table align="center" class="table" style="max-width:900px">
+            <tr>
+                <th class="text-center">Diagrama de Estados</th>
+                <th class="text-center">Descrição</th>
+            </tr>
+            {% load static %}
+            {% for maquina in maquinas %}
+                <tr class="text-left">
+                    <td>
+                        <a href="{% url 'computacao:maquina' maquina.id %}">
+                            <img src="{% static maquina.diagrama %}" alt="" width="80%">
+                        </a>
+                    </td>
+                    <td style="vertical-align:bottom">
+                        <p>{{ maquina.descricao }}</p>
+                        <p>
+                            <a href="{% url 'computacao:maquina' maquina.id %}" class="btn btn-info  btn-sm">
+                                Detalhes
+                            </a>
+                            <a href="{% url 'computacao:maquina' maquina.id %}" class="btn btn-success  btn-sm">
+                                Validar Sequência
+                            </a>
+                            <a href="{% url 'computacao:editamaquina' maquina.id %}" class="btn btn-warning  btn-sm">
+                                Editar Máquina
+                            </a>
+                            <a href="{% url 'computacao:apagamaquina' maquina.id %}" class="btn btn-danger  btn-sm">
+                                Apagar Máquina
+                            </a>
+                        </p>
+
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    </main>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}

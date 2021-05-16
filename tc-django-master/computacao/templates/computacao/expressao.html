@@ -1,0 +1,45 @@
+{% extends 'computacao/layout.html' %}
+
+{% block main %}
+
+
+    <main class="col-sm-12">
+
+        <h3>{{ expressao.nome|title }}</h3>
+
+        <p>{{ expressao.descricao }}.</p>
+
+        <table align="center">
+            <tr align="left">
+                <td>
+                    <p> <b>Regex da expressao:</b></p>
+
+                    <li>Regex: {{ expressao.printRegex }} </li>
+
+
+        <br>
+        <p><b>Validador:</b> Insira uma sequência e verifique se pertence à linguagem que o regex reconhece: </p>
+        <form action="{% url 'computacao:expressao' expressao.id %}" method="POST">
+            {% csrf_token %}
+           <b>{{ form }}</b>
+            <input type="submit" value="validar" class="btn btn-success">
+        </form>
+
+        {% if resultado != None %}
+            {% if resultado == True %}
+                <p>A sequência <b>{{ sequencia }}</b> é aceite pelo regex </p>
+            {% else %}
+                <p>A sequência <b>{{ sequencia }}</b> não é aceite pelo regex </p>
+            {% endif %}
+        {% else %}
+            <br><br>
+        {% endif %}
+
+
+    </main>
+
+{% endblock %}
+
+
+{% block aside %}
+{% endblock %}

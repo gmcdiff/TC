@@ -1,0 +1,55 @@
+{% extends 'computacao/layout.html' %}
+
+{% block main %}
+
+    <main class="col-sm-12 text-center">
+
+        <h3>Expressões Regulares</h3>
+        <a href="{% url 'computacao:novaexpressao' %}" class="btn btn-success btn-sm btn-block">
+        Crie uma Expressão Regular com regex
+        </a>
+        <br>
+        <p>Apresentam-se em baixo as expressões regulares que foram criadas.</p>
+
+        <table align="center" class="table" style="max-width:900px">
+            <tr>
+                <th class="text-center">Diagrama de Estados</th>
+                <th class="text-center">Descrição</th>
+            </tr>
+            {% load static %}
+            {% for expressao in expressoes %}
+                <tr class="text-left">
+                    <td>
+                        <a href="{% url 'computacao:expressao' expressao.id %}">
+                        {{expressao.printRegex}}
+                        </a>
+                    </td>
+                    <td style="vertical-align:bottom">
+                        <p>{{ expressao.descricao }}</p>
+                        <p>
+                            <a href="{% url 'computacao:expressao' expressao.id %}" class="btn btn-info  btn-sm">
+                                Detalhes
+                            </a>
+                            <a href="{% url 'computacao:expressao' expressao.id %}" class="btn btn-success  btn-sm">
+                                Validar Expressao
+                            </a>
+                            <a href="{% url 'computacao:editaexpressao' expressao.id %}" class="btn btn-warning  btn-sm">
+                                Editar Expressao
+                            </a>
+                            <a href="{% url 'computacao:apagaexpressao' expressao.id %}" class="btn btn-danger  btn-sm">
+                                Apagar Expressao
+                            </a>
+                        </p>
+
+                    </td>
+
+                </tr>
+            {% endfor %}
+        </table>
+
+    </main>
+
+{% endblock %}
+
+{% block aside %}
+{% endblock %}
